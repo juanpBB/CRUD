@@ -32,3 +32,24 @@ def addProduct():
         return redirect(url_for('home'))
     else:
         return notFound()
+    
+@app.route('/delete/<string:product_name>')
+def delete(product_name):
+    products = db['products']
+    products.delete_one({'name' : product_name})
+    return redirect(url_for('home'))
+
+#Method Put
+@app.route('/edit/<string:product_name>', methods=['POST'])
+def edit(product_name):
+    products = db['products']
+    name = request.form['name']
+    price = request.form['price']
+    quantity = request.form['quantity']
+
+    if name and price and quantity:
+        products.update_one({'name' : product_name}, {'$set' : {'name' : name, 'price' : price, 'quantity' : quantity}})
+        response = jsonify({'message' : 'Producto ' + product_name + ' actualizado correctamente'})
+        return redirect(url_for('home'))
+    else:
+        return notFound()
