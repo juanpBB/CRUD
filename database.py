@@ -1,12 +1,13 @@
-class Product:
-    def __init__(self, name, price, quantity):
-        self.name = name
-        self.price = price
-        self.quantity = quantity
+from pymongo import MongoClient
+import certifi
 
-    def toDBCollection(self):
-        return{
-            'name': self.name,
-            'price': self.price,
-            'quantity': self.quantity
-        }
+MONGO_URI = 'mongodb+srv://juan:pablo@cluster0.1cf3m.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0'
+ca = certifi.where()
+
+def dbConnection():
+    try:
+        client = MongoClient(MONGO_URI, tlsCAFile=ca)
+        db = client["dbb_products_app"]
+    except ConnectionError:
+        print('Error de conexión con la bdd')
+    return db
