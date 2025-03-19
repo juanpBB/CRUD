@@ -53,3 +53,18 @@ def edit(product_name):
         return redirect(url_for('home'))
     else:
         return notFound()
+
+@app.errorhandler(404)
+def notFound(error=None):
+    message ={
+        'message': 'No encontrado ' + request.url,
+        'status': '404 Not Found'
+    }
+    response = jsonify(message)
+    response.status_code = 404
+    return response
+
+
+
+if __name__ == '__main__':
+    app.run(debug=True, port=4000)    
