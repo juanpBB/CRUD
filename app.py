@@ -1,71 +1,65 @@
 from flask import Flask, render_template, request, Response, jsonify, redirect, url_for
-import database as dbase  
-from product import Product
-
-db = dbase.dbConnection()
+import database as dbase
+from product import Producto
 
 app = Flask(__name__)
+db = dbase.dbConection()
 
-#Rutas de la aplicación
 @app.route('/')
 def home():
-    products = db['products']
-    productsReceived = products.find()
-    return render_template('index.html', products = productsReceived)
+    return render_template('index.html')
 
-#Method Post
 @app.route('/products', methods=['POST'])
-def addProduct():
+def addproduct():
     products = db['products']
-    name = request.form['name']
-    price = request.form['price']
-    quantity = request.form['quantity']
+    nombre = request.form['nombre']
+    titulo = request.form['titulo']
+    autor = request.form['autor']
 
-    if name and price and quantity:
-        product = Product(name, price, quantity)
-        products.insert_one(product.toDBCollection())
-        response = jsonify({
-            'name' : name,
-            'price' : price,
-            'quantity' : quantity
-        })
+    if nombre and titulo and autor:
+        product = Producto(nombre, titulo, autor)
+        products.insert_one(product.paraConexiondb())
         return redirect(url_for('home'))
     else:
-        return notFound()
+        return notfound()
 
-#Method delete
-@app.route('/delete/<string:product_name>')
-def delete(product_name):
-    products = db['products']
-    products.delete_one({'name' : product_name})
-    return redirect(url_for('home'))
+@app.route('/usuarios', methods=['POST'])
+def addusuario():
+    usuarios = db['usuarios']
+    nombre = request.form['nombre']
+    correo = request.form['correo']
+    celular = request.form['celular']
 
-#Method Put
-@app.route('/edit/<string:product_name>', methods=['POST'])
-def edit(product_name):
-    products = db['products']
-    name = request.form['name']
-    price = request.form['price']
-    quantity = request.form['quantity']
-
-    if name and price and quantity:
-        products.update_one({'name' : product_name}, {'$set' : {'name' : name, 'price' : price, 'quantity' : quantity}})
-        response = jsonify({'message' : 'Producto ' + product_name + ' actualizado correctamente'})
+    if nombre and correo and celular:
+        usuario = {'nombre': nombre, 'correo': correo, 'celular': celular}
+        usuarios.insert_one(usuario)
         return redirect(url_for('home'))
     else:
-        return notFound()
+        return notfound()
+
+@app.route('/prestamos', methods=['POST'])
+def addprestamo():
+    prestamos = db['prestamos']
+    dia = request.form['dia']
+    hora = request.form['hora']
+    libro = request.form['libro']
+
+    if dia and hora and libro:
+        prestamo = {'dia': dia, 'hora': hora, 'libro': libro}
+        prestamos.insert_one(prestamo)
+        return redirect(url_for('home'))
+    else:
+        return notfound()
 
 @app.errorhandler(404)
-def notFound(error=None):
-    message ={
-        'message': 'No encontrado ' + request.url,
+def notfound(error=None):
+    message = {
+        'mensaje': 'No encontrado ' + request.url,
         'status': '404 Not Found'
     }
     response = jsonify(message)
     response.status_code = 404
     return response
 
-
-
 if __name__ == '__main__':
-    app.run(debug=True, port=4000)
+    app.run(debug=True, port=5000)
