@@ -51,6 +51,21 @@ def addprestamo():
     else:
         return notfound()
 
+@app.route('/products')
+def show_products():
+    products = db['products'].find()
+    return render_template('products.html', products=products)
+
+@app.route('/usuarios')
+def show_usuarios():
+    usuarios = db['usuarios'].find()
+    return render_template('usuarios.html', usuarios=usuarios)
+
+@app.route('/prestamos')
+def show_prestamos():
+    prestamos = db['prestamos'].find()
+    return render_template('prestamos.html', prestamos=prestamos)
+
 @app.errorhandler(404)
 def notfound(error=None):
     message = {
