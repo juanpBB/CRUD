@@ -32,7 +32,8 @@ def addProduct():
         return redirect(url_for('home'))
     else:
         return notFound()
-    
+
+#Method delete
 @app.route('/delete/<string:product_name>')
 def delete(product_name):
     products = db['products']
@@ -67,4 +68,4 @@ def notFound(error=None):
 
 
 if __name__ == '__main__':
-    app.run(debug=True, port=4000)    
+    app.run(debug=True, port=4000)
