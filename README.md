@@ -40,6 +40,10 @@ imagenes adjuntas del proyecto
 ![image](https://github.com/user-attachments/assets/d1b05f90-3fbd-443e-a57f-1cbb4f5a52ef)
 ![image](https://github.com/user-attachments/assets/9d434e06-bd1b-4f7a-b10e-a5542c7e0b95)
 
+casos de uso
+![image](https://github.com/user-attachments/assets/da617615-3df0-4a57-a136-d2de33003f50)
+
+
 
 rama principal Main base de datos mongodb, ramas crud en mysql
 
