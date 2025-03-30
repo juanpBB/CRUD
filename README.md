@@ -35,8 +35,14 @@ https://github.com/juanpBB/CRUD.git
 
 imagenes adjuntas del proyecto
 ![image](https://github.com/user-attachments/assets/28f4fdd7-a29b-4928-8c58-6e2705be91fb)
+**![image](https://github.com/user-attachments/assets/0a9bdd48-f2ba-46dc-a171-d1303eab2530)
+
 ![image](https://github.com/user-attachments/assets/d1b05f90-3fbd-443e-a57f-1cbb4f5a52ef)
+![image](https://github.com/user-attachments/assets/9d434e06-bd1b-4f7a-b10e-a5542c7e0b95)
+
 
 rama principal Main base de datos mongodb, ramas crud en mysql
+
+
 
 
