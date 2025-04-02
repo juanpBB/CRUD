@@ -110,16 +110,23 @@ Para preguntas o soporte, contactar al desarrollador:
 gmail:  jblandonbarbosa@gmail.com
 
 
-imagenes adjuntas del proyecto CrudMongoDB
+## imagenes adjuntas del proyecto CrudMongoDB
 
-Diagrama de casos de uso
+- Diagrama de casos de uso
+
 ![image](https://github.com/user-attachments/assets/c6a580b9-7baa-419d-887e-77bf1a05c8af)
 
-como se ve en mongodb
-![image](https://github.com/user-attachments/assets/02e7c1e0-e26c-4cb5-9642-f33f06ddca8e)
+- como se ve en mongodb
 
-estructura de la tabla mysql (hecha en heidiSQL)
+
+ ![image](https://github.com/user-attachments/assets/02e7c1e0-e26c-4cb5-9642-f33f06ddca8e)
+
+- estructura de la tabla mysql (hecha en heidiSQL)
+
+
 ![image](https://github.com/user-attachments/assets/ffbf7231-4f82-45ba-8f3b-3ce3fef96471)
 
-como se ve en XAMP
+- como se ve en XAMP
+
+
 ![image](https://github.com/user-attachments/assets/1c28184f-5499-46f7-9cef-c03b70179ee2)
