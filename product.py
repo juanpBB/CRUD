@@ -5,7 +5,7 @@ class Product:
         self.quantity = quantity
 
     def toDBCollection(self):
-        return{
+        return {
             'name': self.name,
             'price': self.price,
             'quantity': self.quantity

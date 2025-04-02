@@ -1,13 +1,15 @@
-from pymongo import MongoClient
-import certifi
-
-MONGO_URI = 'mongodb+srv://juan:pablo@cluster0.1cf3m.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0'
-ca = certifi.where()
+import mysql.connector
+from mysql.connector import Error
 
 def dbConnection():
     try:
-        client = MongoClient(MONGO_URI, tlsCAFile=ca)
-        db = client["dbb_products_app"]
-    except ConnectionError:
-        print('Error de conexión con la bdd')
-    return db
+        connection = mysql.connector.connect(
+            host='localhost',
+            user='root',
+            password='',
+            database='products_db'
+        )
+        return connection
+    except Error as e:
+        print(f"Error de conexión con la base de datos: {e}")
+        return None

@@ -1,50 +1,65 @@
 from flask import Flask, render_template, request, Response, jsonify, redirect, url_for
-import database as dbase  
+import database as dbase
 from product import Product
-
-db = dbase.dbConnection()
 
 app = Flask(__name__)
 
-#Rutas de la aplicación
+# Rutas de la aplicación
 @app.route('/')
 def home():
-    products = db['products']
-    productsReceived = products.find()
+    conn = dbase.dbConnection()
+    cursor = conn.cursor(dictionary=True)
+    cursor.execute("SELECT * FROM products")
+    productsReceived = cursor.fetchall()
+    conn.close()
     return render_template('index.html', products=productsReceived)
 
-#Method Post
+# Method Post
 @app.route('/products', methods=['POST'])
 def addProduct():
-    products = db['products']
-    name = request.form['name']  # Asegúrate de que el campo en el formulario se llame 'name'
-    price = request.form['price']  # Asegúrate de que el campo en el formulario se llame 'price'
-    quantity = request.form['quantity']  # Asegúrate de que el campo en el formulario se llame 'quantity'
+    conn = dbase.dbConnection()
+    cursor = conn.cursor()
+    name = request.form['name']
+    price = request.form['price']
+    quantity = request.form['quantity']
 
     if name and price and quantity:
-        product = Product(name, price, quantity)
-        products.insert_one(product.toDBCollection())
+        cursor.execute(
+            "INSERT INTO products (name, price, quantity) VALUES (%s, %s, %s)",
+            (name, price, quantity)
+        )
+        conn.commit()
+        conn.close()
         return redirect(url_for('home'))
     else:
         return notFound()
 
-#Method delete
+# Method delete
 @app.route('/delete/<string:product_name>')
 def delete(product_name):
-    products = db['products']
-    products.delete_one({'name': product_name})
+    conn = dbase.dbConnection()
+    cursor = conn.cursor()
+    cursor.execute("DELETE FROM products WHERE name = %s", (product_name,))
+    conn.commit()
+    conn.close()
     return redirect(url_for('home'))
 
-#Method Put
+# Method Put
 @app.route('/edit/<string:product_name>', methods=['POST'])
 def edit(product_name):
-    products = db['products']
-    name = request.form['name']  # Asegúrate de que el campo en el formulario se llame 'name'
-    price = request.form['price']  # Asegúrate de que el campo en el formulario se llame 'price'
-    quantity = request.form['quantity']  # Asegúrate de que el campo en el formulario se llame 'quantity'
+    conn = dbase.dbConnection()
+    cursor = conn.cursor()
+    name = request.form['name']
+    price = request.form['price']
+    quantity = request.form['quantity']
 
     if name and price and quantity:
-        products.update_one({'name': product_name}, {'$set': {'name': name, 'price': price, 'quantity': quantity}})
+        cursor.execute(
+            "UPDATE products SET name = %s, price = %s, quantity = %s WHERE name = %s",
+            (name, price, quantity, product_name)
+        )
+        conn.commit()
+        conn.close()
         return redirect(url_for('home'))
     else:
         return notFound()
@@ -60,4 +75,4 @@ def notFound(error=None):
     return response
 
 if __name__ == '__main__':
-    app.run(debug=True, port=4000)
+    app.run(debug=True, port=3600)
