@@ -1,52 +1,113 @@
- 🔄 CRUD - Migración MongoDB a MySQL
+# README - CRUD con Python, Flask y MongoDB
+## Descripción del Proyecto
 
-Descripción técnica: Aplicación CRUD (Crear, Leer, Actualizar, Eliminar) con capacidad de migración entre MongoDB (NoSQL) y MySQL (SQL), desarrollada con Python y Flask.
+Este proyecto es una aplicación CRUD (Create, Read, Update, Delete) desarrollada con:
 
+- Python como lenguaje principal
 
+- Flask como framework web
 
- 🛠️ Tecnologías Principales
+- MongoDB como base de datos NoSQL
 
- Backend
-- **Python 3.10
-- **Flask 2.3 
+La aplicación permite gestionar productos, incluyendo su nombre, precio y cantidad, con una interfaz amigable construida con HTML y Bootstrap.
 
-Bases de Datos
-- MongoDB
-- MySQL
+## Características principales
+- Formulario para agregar nuevos productos
 
-Frontend
-- HTML5 + Boostrap
+- Visualización de todos los productos en una tabla
 
-Herramienta
- Git + GitHub
- visual studio code
+- Funcionalidad para editar productos existentes
 
+- Opción para eliminar productos
 
- ⚙️ Funcionalidad principal
+- Integración completa con MongoDB (las operaciones se reflejan directamente en la base de datos)
 
- Operaciones CRUD completas:
-   Validación de datos automática
+## Requisitos del sistema
+Python 3.7 o superior
 
-contacto: jblandonbarbosa@gmail.com
-
-instalacion rapida:
-https://github.com/juanpBB/CRUD.git
+MongoDB instalado y en ejecución
 
 
-imagenes adjuntas del proyecto
-![image](https://github.com/user-attachments/assets/28f4fdd7-a29b-4928-8c58-6e2705be91fb)
-**![image](https://github.com/user-attachments/assets/0a9bdd48-f2ba-46dc-a171-d1303eab2530)
-
-![image](https://github.com/user-attachments/assets/d1b05f90-3fbd-443e-a57f-1cbb4f5a52ef)
-![image](https://github.com/user-attachments/assets/9d434e06-bd1b-4f7a-b10e-a5542c7e0b95)
-
-casos de uso
-![image](https://github.com/user-attachments/assets/da617615-3df0-4a57-a136-d2de33003f50)
+## Dependencias
 
 
+- Flask-PyMongo
 
-rama principal Main base de datos mongodb, ramas crud en mysql
+- python-dotenv
+
+
+## Instalación
+
+Clonar el repositorio:
+
+```
+
+bash
+
+cd [nombre del directorio del proyecto]
+
+git clone [https://github.com/juanpBB/CRUD.git]
+
+
+```
+
+## estructura del proyecto
+
+
+```
+
+/CRUD_MONGO
+│   app.py                  # Archivo principal de la aplicación Flask
+│   database.py             # Archivo para operaciones con MongoDB (modificado - indicado por "M")
+│   product.py              # Archivo con definiciones de modelos/productos
+│   dbb_products_app_products.json  #exportacion a de los datos de la base de datos
+
+│
+├───templates/              # Carpeta de plantillas HTML
+│       index.html          # Plantilla principal del CRUD
+│
+└───__pycache__/            # Carpeta de caché de Python (generada automáticamente)
+
+Copy
+http://localhost4000
 
 
 
+```
 
+## Uso de la aplicación
+- Agregar un producto:
+
+- Completa el formulario con nombre, precio y cantidad
+
+- Haz clic en "Enviar" para guardar el producto
+
+## Ver productos:
+
+- Todos los productos se muestran en la tabla debajo del formulario
+
+- Editar un producto:
+
+- Haz clic en el botón "Editar" de cualquier producto
+
+- Modifica los campos en el formulario que aparecerá
+
+- Guarda los cambios
+
+## Eliminar un producto:
+
+- Haz clic en el botón "Eliminar" del producto que deseas quitar
+
+- Confirma la acción
+
+## Configuración de MongoDB
+La aplicación espera que MongoDB esté ejecutándose localmente en el puerto predeterminado (27017). Si se quiere utilizar en una base de datos propia se debe cambiar MONGO_URI con el link de acceso de tu base de datos mongo DB
+
+
+
+## Contacto
+Para preguntas o soporte, contactar al desarrollador: 
+gmail:  jblandonbarbosa@gmail.com
+
+
+imagenes adjuntas del proyecto CrudMongoDB
