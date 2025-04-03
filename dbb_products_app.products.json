@@ -1,8 +1,0 @@
-[{
-  "_id": {
-    "$oid": "67db3a307fe3dcbfe3522b1b"
-  },
-  "name": "celular",
-  "price": "2000",
-  "quantity": "1"
-}]
